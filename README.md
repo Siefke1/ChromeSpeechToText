@@ -4,4 +4,4 @@ A simple GoogleChrome Extension to convert speech to text and copy it to the cli
 ## Setup
 
 - Host `index.html` to GitHub Pages
-- Add `/extensions` to your `chrome://extensions/` in Developer Mode
+- Add `/extension` to your `chrome://extensions/` in Developer Mode
