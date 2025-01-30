@@ -1,0 +1,13 @@
+{
+    "name": "Speech-to-Text Extension (with GitHub Pages)",
+    "version": "1.0",
+    "description": "Opens a GitHub Pages site for speech recognition.",
+    "manifest_version": 3,
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "permissions": [
+      "tabs"
+    ]
+  }
+  

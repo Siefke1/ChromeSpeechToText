@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>GitHub Pages Speech Recognition</title>
+  </head>
+  <body>
+    <h1>Speech Recognition Demo</h1>
+    <button id="startBtn">Start Recording</button>
+    <button id="stopBtn">Stop Recording</button>
+    <br /><br />
+    <textarea id="textResult" rows="5" cols="50" readonly></textarea>
+    <br /><br />
+    <button id="copyBtn">Copy to Clipboard</button>
+
+    <script>
+      // Use Web Speech API in Chrome
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      let recognition;
+
+      if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.lang = "en-US";
+        recognition.interimResults = false;
+        recognition.continuous = false;
+
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          document.getElementById("textResult").value = transcript;
+        };
+
+        recognition.onerror = (event) => {
+          console.error("Speech recognition error:", event.error);
+        };
+      } else {
+        alert("SpeechRecognition is not supported in this browser.");
+      }
+
+      document.getElementById("startBtn").addEventListener("click", () => {
+        if (recognition) recognition.start();
+      });
+
+      document.getElementById("stopBtn").addEventListener("click", () => {
+        if (recognition) recognition.stop();
+      });
+
+      document.getElementById("copyBtn").addEventListener("click", () => {
+        const text = document.getElementById("textResult").value;
+        navigator.clipboard.writeText(text).then(() => {
+          alert("Copied to clipboard!");
+        });
+      });
+    </script>
+  </body>
+</html>
